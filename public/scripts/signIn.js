@@ -7,6 +7,11 @@ function validateForm() {
     var password = document.getElementById("enterPassword").value;
     if (employeeID == "" || password == "") {
         alert("Check that all fields are filled out");
+        return false;
+    }
+    if (!isNaN(employeeID)) {
+        alert("Check that employeeID contains only numbers");
+        return false;
     }
 	return true;
 }
