@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>Register - Sign In</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    
+        <link rel="stylesheet" type="text/css" href="/styles/master.css">
+    
+        <script type="text/javascript" src="/scripts/master.js" defer></script>
+        <script type="text/javascript" src="/scripts/signIn.js" defer></script>
+    </head>
+
+    <body>
+        <div class="header">
+            <h1 class="primary-message">Sign In</h1>
+        </div>
+
+        <div id="error" <% if (!locals.errorMessage || (locals.errorMessage === "")) { %> class="hidden" <% } %>>
+			<h4 id="errorMessage" class="error-message">
+				<% if (locals.errorMessage && (locals.errorMessage !== "")) { %>
+					<%= locals.errorMessage %>
+				<% } %>
+			</h4>
+        </div>
+        
+        <form action="/" method="POST" onsubmit="return validateForm();" class="inputContent">
+            <label>Employee ID </label>
+            <input type="text"/> <br /> <br />
+            <label>Password </label>
+            <input type="password"/> <br /> <br />
+            <input type="submit" value="Enter"/>
+        </form>
+        
+    </body>
+</html>
