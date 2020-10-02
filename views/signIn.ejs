@@ -22,12 +22,12 @@
 			</h4>
         </div>
         
-        <form action="/" method="POST" onsubmit="return validateForm();" class="inputContent">
-            <label>Employee ID </label>
-            <input type="number"/> <br /> <br />
-            <label>Password </label>
-            <input type="password"/> <br /> <br />
-            <input type="submit" value="Enter"/>
+        <form name="signInForm" action="/views/productListing.ejs" method="POST" onsubmit="return validateForm();" class="inputContent">
+            <label>Employee ID:  </label>
+            <input id="enterID" type="number"/> <br /> <br />
+            <label>Password:  </label>
+            <input id="enterPassword" type="password"/> <br /> <br />
+            <input type="submit" value="Sign In"/>
         </form>
         
     </body>
