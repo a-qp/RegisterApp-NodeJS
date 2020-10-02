@@ -23,4 +23,3 @@ export const DatabaseConnection: Sequelize.Sequelize =
 export const createTransaction = async (): Promise<Sequelize.Transaction> => {
 	return DatabaseConnection.transaction();
 };
-//comments
