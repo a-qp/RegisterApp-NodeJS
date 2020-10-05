@@ -29,11 +29,11 @@
         <button type="button">Start Transaction</button>
         <button type="button" action="/views/productListing.ejs">View Products</button>
 
-
+        <% if locals.class == "manager" || locals.class == "Employee"
             <button type="button" action="/views/employeedetails.ejs">Create Employee</button>
             <button type="button">Sales Report</button>
             <button type="button">Cashier Report</button>
-
+        %>
     
         <button type="button" action="/views/signIn.ejs">Sign out</button>
 	</div>
