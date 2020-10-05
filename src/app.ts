@@ -7,10 +7,10 @@ import * as fileSystem from "fs";
 import bodyParser from "body-parser";
 import compression from "compression";
 import session from "express-session";
+import { Resources } from "./resourceLookup";
 
 // Load environment variables from .env file, where API keys and passwords are configured
 dotenv.config({ path: ".env" });
-
 // Create Express server
 const app = express();
 
@@ -45,5 +45,7 @@ fileSystem.readdirSync(__dirname + "/routes").forEach(function (routeConfig: str
 		route.routes(app);
 	}
 });
+
+Resources.loadStrings();
 
 export default app;

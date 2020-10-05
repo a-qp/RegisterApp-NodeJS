@@ -9,3 +9,4 @@ export const signIn = async (req: Request, res: Response): Promise<void> => {
 export const clearActiveUser = async (req: Request, res: Response): Promise<void> => {
 	// TODO: Sign out the user associated with req.session.id
 };
+

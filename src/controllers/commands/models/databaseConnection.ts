@@ -10,6 +10,9 @@ export const DatabaseConnection: Sequelize.Sequelize =
 			protocol: "postgres",
 			omitNull: true,
 			freezeTableName: true,
+			dialectOptions: {
+				ssl: true
+			},
 			pool: <Sequelize.PoolOptions>{
 				min: 0,
 				acquire: 30000,
