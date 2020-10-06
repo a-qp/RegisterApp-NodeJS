@@ -4,6 +4,10 @@ import * as SignInRouteController from "../controllers/signInRouteController";
 
 function signInRoutes(server: express.Express) {
 	// TODO: Route for initial page load
+	server.set("view engine", "ejs");
+	server.get("/", function(req, res) {
+		res.render("signIn");
+	});
 
 	server.post(RouteLookup.SignIn, SignInRouteController.signIn);
 
