@@ -26,14 +26,13 @@
 		</div>
 
 		<!-- TODO: Add the various action button elements -->
-		<p id="funcunavailabe"></p>
-        <button id="startTransactionButton" type="button" class="action" onclick='document.getElementById("funcunavailabe").innerHTML ="Functionality Not Available"'>Start Transaction</button>
+        <button id="startTransactionButton" type="button" class="action" title ="Functionality Not Available">Start Transaction</button>
         <button id="viewProductsButton" type="button" class="action" onclick="document.location='/productListing'">View Products</button>
 
-        <div <% if (locals.class === "manager" || locals.class === "Employee") { %> class="hidden" <% } %>>
+        <div <% if (!locals.class === "manager" || !locals.class === "Employee" || locals.class === "") { %> class="hidden" <% } %>>
             <button id="createEmployeeButton" type="button" class="action" onclick="document.location='/employeeDetails'">Create Employee</button>
-            <button id="productSalesReportButton" type="button" class="action" onclick='document.getElementById("funcunavailabe").innerHTML ="Functionality Not Available"'>Sales Report</button>
-            <button id="cashierSalesReportButton" type="button" class="action" onclick='document.getElementById("funcunavailabe").innerHTML ="Functionality Not Available"'>Cashier Report</button>
+            <button id="productSalesReportButton" type="button" class="action" title ="Functionality Not Available">Sales Report</button>
+            <button id="cashierSalesReportButton" type="button" class="action" title ="Functionality Not Available">Cashier Report</button>
 		</div>
 	</div>
 
