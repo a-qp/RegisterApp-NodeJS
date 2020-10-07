@@ -36,7 +36,7 @@ export const signIn = async (req: Request, res: Response): Promise<void> => {
 			return res.redirect(RouteLookup.MainMenu);
 		}).catch((error: any): void => {
 			console.error("An error occured signing in. " + error.message);
-			return res.redirect(RouteLookup.SignIn);
+			return res.redirect(RouteLookup.SignIn + "?" + QueryParameterLookup.ErrorCode + "=" + ResourceKey.USER_UNABLE_TO_SIGN_IN);
 		});
 };
 
