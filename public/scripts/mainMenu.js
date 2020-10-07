@@ -7,7 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	getProductSalesReportActionElement().addEventListener("click", () => displayError("Functionality has not yet been implemented."));
 
-	getCashierSalesReportActionElement().addEventListener("click", () => displayError("Functionality has not yet been implemented."));
+    getCashierSalesReportActionElement().addEventListener("click", () => displayError("Functionality has not yet been implemented."));
+    
+    getsignOutImageElement().addEventListener("click", () => window.location.assign("/"));
 });
 
 function getStartTransactionActionElement() {
@@ -28,4 +30,8 @@ function getProductSalesReportActionElement() {
 
 function getCashierSalesReportActionElement() {
 	return document.getElementById("cashierSalesReportButton");
+}
+
+function getsignOutImageElement() {
+	return document.getElementById("signOutImage");
 }

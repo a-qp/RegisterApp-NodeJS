@@ -26,13 +26,13 @@
 		</div>
 
 		<!-- TODO: Add the various action button elements -->
-        <button id="startTransactionButton" type="button" class="action" title ="Functionality Not Available">Start Transaction</button>
-        <button id="viewProductsButton" type="button" class="action" onclick="document.location='/productListing'">View Products</button>
+        <button id="startTransactionButton" type="button" class="action">Start Transaction</button> 
+        <button id="viewProductsButton" type="button" class="action">View Products</button> <br/> <br/>
 
-        <div <% if (!locals.class === "manager" || !locals.class === "Employee" || locals.class === "") { %> class="hidden" <% } %>>
-            <button id="createEmployeeButton" type="button" class="action" onclick="document.location='/employeeDetails'">Create Employee</button>
-            <button id="productSalesReportButton" type="button" class="action" title ="Functionality Not Available">Sales Report</button>
-            <button id="cashierSalesReportButton" type="button" class="action" title ="Functionality Not Available">Cashier Report</button>
+        <div <% if (locals.isElevatedUser) { %> class="hidden" <% } %>>
+            <button id="createEmployeeButton" type="button" class="action">Create Employee</button> 
+            <button id="productSalesReportButton" type="button" class="action">Sales Report</button> 
+            <button id="cashierSalesReportButton" type="button" class="action">Cashier Report</button>
 		</div>
 	</div>
 
@@ -52,7 +52,7 @@
 	</div>
 
 	<div class="footer">
-		<img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" onclick="document.location='/'"/>
+		<img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer"/>
 	</div>
 		
 </body>
