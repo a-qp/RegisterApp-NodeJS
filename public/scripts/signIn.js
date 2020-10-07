@@ -1,17 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
-	// TODO: Anything you want to do when the page is loaded?
+	
 });
 
 function validateForm() {
-    var employeeID = document.getElementById("enterID").value;
-    var password = document.getElementById("enterPassword").value;
-    if (employeeID == "" || password == "") {
-        alert("Check that all fields are filled out");
+    const employeeID = getEmployeeID().value;
+    const password = getPassword().value;
+    if (employeeID.trim() == "" || password.trim() == "") {
+        alert("Please make sure all fields are filled out");
         return false;
     }
-    if (!isNaN(employeeID)) {
-        alert("Check that employeeID contains only numbers");
+    if (isNaN(employeeID) || employeeID < 1) {
+        alert("Please make sure you have provided a valid employee ID");
         return false;
     }
 	return true;
+}
+
+function getEmployeeID() {
+    return document.getElementById("enterID");
+}
+
+function getPassword() {
+    return document.getElementById("enterPassword");
 }
