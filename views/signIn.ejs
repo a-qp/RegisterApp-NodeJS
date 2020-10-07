@@ -10,25 +10,30 @@
     </head>
 
     <body>
+
         <div class="header">
             <h1 class="primary-message">Sign In</h1>
         </div>
 
-        <div id="error" <% if (!locals.errorMessage || (locals.errorMessage === "")) { %> class="hidden" <% } %>>
-			<h4 id="errorMessage" class="error-message">
-				<% if (locals.errorMessage && (locals.errorMessage !== "")) { %>
-					<%= locals.errorMessage %>
-				<% } %>
-			</h4>
+        <div id="main" class="main">
+            
+            <div id="error" <% if (!locals.errorMessage || (locals.errorMessage === "")) { %> class="hidden" <% } %>>
+                <h4 id="errorMessage" class="error-message">
+                    <% if (locals.errorMessage && (locals.errorMessage !== "")) { %>
+                        <%= locals.errorMessage %>
+                    <% } %>
+                </h4>
+            </div>
+            
+            <form name="signInForm" action="/" method="POST" onsubmit="return validateForm();" class="inputContent" style="align-content: center;">
+                <label>Employee ID:  </label>
+                <input id="enterID" type="number"/> <br /> <br />
+                <label>Password:  </label>
+                <input id="enterPassword" type="password"/> <br /> <br />
+                <input type="submit" value="Sign In"/>
+            </form>
+
         </div>
-        
-        <form name="signInForm" action="/views/productListing.ejs" method="POST" onsubmit="return validateForm();" class="inputContent">
-            <label>Employee ID:  </label>
-            <input id="enterID" type="number"/> <br /> <br />
-            <label>Password:  </label>
-            <input id="enterPassword" type="password"/> <br /> <br />
-            <input type="submit" value="Sign In"/>
-        </form>
-        
+
     </body>
 </html>
