@@ -1,15 +1,18 @@
 export enum ParameterLookup {
-	ProductId = "productId"
+	ProductId = "productId",
+	EmployeeId = "employeeId"
 }
 
 export enum QueryParameterLookup {
-	ErrorCode = "errorCode"
+	ErrorCode = "errorCode",
+	EmployeeId = "employeeId"
 }
 
 export enum ViewNameLookup {
 	SignIn = "signIn",
 	MainMenu = "mainMenu",
 	ProductDetail = "productDetail",
+	EmployeeDetail = "employeeDetail",
 	ProductListing = "productListing"
 }
 

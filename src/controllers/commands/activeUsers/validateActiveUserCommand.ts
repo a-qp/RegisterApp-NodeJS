@@ -6,7 +6,7 @@ import { CommandResponse, ActiveUser } from "../../typeDefinitions";
 export const execute = async (sessionKey: string): Promise<CommandResponse<ActiveUser>> => {
 	return ActiveUserRepository.queryBySessionKey(sessionKey)
 		.then((queriedActiveUser: (ActiveUserModel | null)): Promise<CommandResponse<ActiveUser>> => {
-			if (!queriedActiveUser) {
+			if (queriedActiveUser == null) {
 				return Promise.reject(<CommandResponse<ActiveUser>>{
 					status: 404,
 					message: Resources.getString(ResourceKey.USER_NOT_FOUND)
