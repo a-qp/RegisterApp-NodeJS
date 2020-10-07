@@ -60,6 +60,10 @@ export interface PageResponse {
 	errorMessage?: string;
 }
 
+export interface SignInPageResponse extends PageResponse {
+	employeeId: string;
+}
+
 export interface MainMenuPageResponse extends PageResponse {
 	isElevatedUser: boolean;
 }
