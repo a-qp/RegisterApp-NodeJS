@@ -10,11 +10,7 @@ export const hashString = (toHash: string): string => {
 };
 
 export const isElevatedUser = (employeeClassification: EmployeeClassification): boolean => {
-    if (EmployeeClassification.NotDefined) {
-        return false; // TODO: Determine if an employee is an elevated user by their classification
-    }
-    else
-        return true;
+    return ((employeeClassification === EmployeeClassification.ShiftManager) || (employeeClassification === EmployeeClassification.GeneralManager)); // TODO: Determine if an employee is an elevated user by their classification
 };
 
 export const makeEmployeeId = (id: number): string => {

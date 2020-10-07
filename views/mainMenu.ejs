@@ -25,15 +25,16 @@
 			</h4>
 		</div>
 
-        <!-- TODO: Add the various action button elements -->
-        <button id="startTransactionButton" type="button" action="Functionality Not Available">Start Transaction</button>
-        <button id="viewProductsButton" type="button" action="/views/productListing.ejs">View Products</button>
+		<!-- TODO: Add the various action button elements -->
+		<p id="funcunavailabe"></p>
+        <button id="startTransactionButton" type="button" class="action" onclick='document.getElementById("funcunavailabe").innerHTML ="Functionality Not Available"'>Start Transaction</button>
+        <button id="viewProductsButton" type="button" class="action" onclick="document.location='/productListing'">View Products</button>
 
-        <% if locals.class == "manager" || locals.class == "Employee"
-            <button id="createEmployeeButton" type="button" action="/views/employeedetails.ejs">Create Employee</button>
-            <button id="productSalesReportButton" type="button" action="Functionality Not Available">Sales Report</button>
-            <button id="cashierSalesReportButton" type="button" action="Functionality Not Available">Cashier Report</button>
-        %>
+        <div <% if (locals.class === "manager" || locals.class === "Employee") { %> class="hidden" <% } %>>
+            <button id="createEmployeeButton" type="button" class="action" onclick="document.location='/employeeDetails'">Create Employee</button>
+            <button id="productSalesReportButton" type="button" class="action" onclick='document.getElementById("funcunavailabe").innerHTML ="Functionality Not Available"'>Sales Report</button>
+            <button id="cashierSalesReportButton" type="button" class="action" onclick='document.getElementById("funcunavailabe").innerHTML ="Functionality Not Available"'>Cashier Report</button>
+		</div>
 	</div>
 
 	<div class="hidden">
@@ -52,7 +53,7 @@
 	</div>
 
 	<div class="footer">
-		<img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
+		<img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" onclick="document.location='/'"/>
 	</div>
 		
 </body>
