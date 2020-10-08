@@ -1,0 +1,74 @@
+<html>
+<head>
+</head>
+<script>
+  /*
+  var options = {
+
+    path: '/upload',
+    method: 'PUT'
+  };
+  */
+  function save(){
+    if(document.getElementById("employeetype") == "new"){
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("demo").innerHTML =
+          this.responseText;
+        }
+      };
+      xhttp.open("POST", "ajax_info.txt", true);
+      xhttp.send();
+    }
+    else {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("demo").innerHTML =
+          this.responseText;
+        }
+      };
+      xhttp.open("PUT", "ajax_info.txt", true);
+      xhttp.send();
+    }
+  }
+
+  window.addEventListener('DOMContentLoaded', (event) => {
+    console.log('DOM fully loaded and parsed');
+    document.getElementById("save").addEventListener("click", validate);
+
+    function validate(){
+      if((document.getElementById("firstname").length != 0) && (document.getElementById("lastname").length != 0) && (document.getElementById("password").length != 0))
+        save();
+      alert("Invalid Form")
+    }
+  });
+
+
+</script>
+<body>
+
+    <form action="/action_page.php">
+        <label for="fname">First name:</label>
+        <input type="hidden" id="employeerecordid">
+        <input type="text" id="employeeid" name="fname" disabled><br><br>
+        <input type="text" id="firstname" name="fname">
+        <input type="text" id="lastname" name="fname">
+        <input type="text" id="password" name="fname">
+        <input type="text" id="confirmpassword" name="fname">
+        <input type="submit" value="Submit">
+      </form>
+
+      <select id="employeetype" name="cars">
+        <option value="101">Cashier</option>
+        <option value="501">Shift Manager</option>
+        <option value="701">General Manager</option>
+      </select>
+
+      <button type="button" id="save">Save</button>
+      <!-- will sign out with this. need bradleys sign out code-->
+      <img src="img_girl.jpg" alt="Girl in a jacket" width="500" height="600">
+
+</body>
+</html>
