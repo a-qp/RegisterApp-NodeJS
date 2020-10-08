@@ -29,7 +29,7 @@
         <button id="startTransactionButton" type="button" class="action">Start Transaction</button> 
         <button id="viewProductsButton" type="button" class="action">View Products</button> <br/> <br/>
 
-        <div <% if (locals.isElevatedUser) { %> class="hidden" <% } %>>
+        <div <% if (!locals.isElevatedUser) { %> class="hidden" <% } %>>
             <button id="createEmployeeButton" type="button" class="action">Create Employee</button> 
             <button id="productSalesReportButton" type="button" class="action">Sales Report</button> 
             <button id="cashierSalesReportButton" type="button" class="action">Cashier Report</button>
