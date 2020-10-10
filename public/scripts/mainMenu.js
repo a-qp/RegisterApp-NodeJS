@@ -1,37 +1,36 @@
 document.addEventListener("DOMContentLoaded", () => {
-	getStartTransactionActionElement().addEventListener("click", () => displayError("Functionality has not yet been implemented."));
+	getStartTransactionButton().addEventListener("click", () => displayError("Functionality has not yet been implemented."));
 
-	getViewProductsActionElement().addEventListener("click", () => window.location.assign("/productListing"));
+	getViewProductsButton().addEventListener("click", () => window.location.assign("/productListing"));
 
-	getCreateEmployeeActionElement().addEventListener("click", () => window.location.assign("/employeeDetail"));
+	getCreateEmployeeButton().addEventListener("click", () => window.location.assign("/employeeDetail"));
 
-	getProductSalesReportActionElement().addEventListener("click", () => displayError("Functionality has not yet been implemented."));
+	getProductSalesReportButton().addEventListener("click", () => displayError("Functionality has not yet been implemented."));
 
-    getCashierSalesReportActionElement().addEventListener("click", () => displayError("Functionality has not yet been implemented."));
-    
-    getsignOutImageElement().addEventListener("click", () => window.location.assign("/"));
+    getCashierSalesReportButton().addEventListener("click", () => displayError("Functionality has not yet been implemented."));    
 });
 
-function getStartTransactionActionElement() {
+function getStartTransactionButton() 
+{
 	return document.getElementById("startTransactionButton");
 }
 
-function getViewProductsActionElement() {
+function getViewProductsButton() 
+{
 	return document.getElementById("viewProductsButton");
 }
 
-function getCreateEmployeeActionElement() {
+function getCreateEmployeeButton() 
+{
 	return document.getElementById("createEmployeeButton");
 }
 
-function getProductSalesReportActionElement() {
+function getProductSalesReportButton() 
+{
 	return document.getElementById("productSalesReportButton");
 }
 
-function getCashierSalesReportActionElement() {
+function getCashierSalesReportButton() 
+{
 	return document.getElementById("cashierSalesReportButton");
-}
-
-function getsignOutImageElement() {
-	return document.getElementById("signOutImage");
 }

@@ -165,4 +165,28 @@ function getErrorMessageContainerElement() {
 function getErrorMessageDisplayElement() {
 	return document.getElementById("errorMessage");
 }
+
+function getSignOut() {
+	return document.getElementById("signOutImage");
+}
 // End getters and setters
+
+document.addEventListener("click", () => {
+	const signout = getSignOut();
+	if (signout != null) 
+	{
+		signout.addEventListener("click", signoutdelete);
+	}
+});
+
+function signoutdelete() {
+	ajaxDelete("/api/signOut", (callbackResponse) => {
+		if ((callbackResponse.data != null) && (callbackResponse.data.redirectUrl != null)) {
+	
+			window.location.replace(callbackResponse.data.redirectUrl);
+		} 
+		else {
+			window.location.replace("/");
+		}
+	});
+}
