@@ -72,7 +72,11 @@ export const execute = async (signInRequest: SignInRequest, session?: Express.Se
 
     return EmployeeRepository.queryByEmployeeId(Number(signInRequest.employeeId))
         .then((queryEmployee: (EmployeeModel | null)): Promise<CommandResponse<ActiveUserModel>> => {
-            if ((queryEmployee) == null || (EmployeeHelper.hashString(signInRequest.password) !== queryEmployee.password.toString())) {
+           // const password: boolean = (EmployeeHelper.hashString(signInRequest.password) !== (queryEmployee.password.toString()));
+           // console.log(EmployeeHelper.hashString(signInRequest.password));
+           // console.log("value of bool is " + String(password));
+           // console.log(queryEmployee.password.toString());
+            if ((queryEmployee) == null || signInRequest.password !== queryEmployee.password.toString()) {
                 return Promise.reject(<CommandResponse<ActiveUser>>{
                     status: 401,
                     message: Resources.getString(ResourceKey.USER_SIGN_IN_CREDENTIALS_INVALID)
