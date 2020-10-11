@@ -13,7 +13,7 @@ function saveActionClick(event) {
 	saveActionElement.disabled = true;
 
 	const employeeId = getEmployeeId();
-
+	const employeeManagerId = getEmployeeManagerId();
 	const employeeLastName = getEmployeeLastName();
 	const employeeFirstName = getEmployeeFirstName();
 	const employeePassword = getEmployeePassword();
@@ -24,7 +24,7 @@ function saveActionClick(event) {
 		+ (employeeIdIsDefined ? employeeId : ""));
 	const saveEmployeeRequest = { // change to employee details
 		id: employeeId,
-		// managerId: employeeManagerId,
+		managerId: employeeManagerId,
         lastName: employeeLastName,
         firstName: employeeFirstName,
         password: employeePassword,
@@ -61,8 +61,8 @@ function saveActionClick(event) {
 
 function validateSave() {
     const FirstName = getEmployeeFirstName();
-    const LastName = getEmployeeLastName();
-    const Password = getEmployeePassword();
+	const LastName = getEmployeeLastName();
+	const Password = getEmployeePassword();
 	if ((FirstName == null) || (FirstName.trim() === "")) {
 		displayError("Please provide a valid first name.");
 		return false;
@@ -95,10 +95,7 @@ function getEmployeeId() {
 	return document.getElementById("employeeid").value;
 }
 function setEmployeeId(employeeId) {
-	document.getElementById("employeeId") = employeeId;
-}
-function getEmployeeIdElement() {
-	return document.getElementById("employeeId");
+	document.getElementById("employeeid").value = employeeId;
 }
 
 function getEmployeeFirstName() {
