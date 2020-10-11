@@ -50,7 +50,7 @@ function saveActionClick(event) {
 					&& (callbackResponse.data.employee != null)
 					&& (callbackResponse.data.employee.id.trim() !== "")) {
 
-					document.getElementById("deleteActionContainer").classList.remove("hidden");
+					document.getElementById("employeeid").classList.remove("hidden");
 
 					setEmployeeId(callbackResponse.data.employee.id.trim());
 				}
