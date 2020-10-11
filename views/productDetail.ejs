@@ -51,14 +51,14 @@
 			</table>
 		</div>
 
-		<div <% if (!locals.isElevatedUser) { %> class="hidden" <% } %>>
+		<div>
 			<br />
-			<div id="deleteActionContainer" <% if (!locals.product || !locals.product.id || (locals.product.id.trim() === "")) { %>class="hidden"<% } %>>
-				<button id="deleteButton" type="button" class="action">Delete</button>
+			<div id="deleteActionContainer" <% if (!locals.product || !locals.product.id || (locals.product.id.trim() === "")) { %>class="hidden"<% } %> >
+				<button id="deleteButton" type="button" class="action" <% if (!locals.isElevatedUser) { %> class="hidden" <% } %>>Delete</button>
 				<br />
 				<br />
 			</div>
-			<button id="saveButton" type="button" class="action">Save</button>
+			<button id="saveButton" type="button" class="action" <% if (!locals.isElevatedUser) { %> class="hidden" <% } %>>Save</button>
 		</div>
 
 		<div id="productSavedAlertModal" class="modal animate-opacity-show">
