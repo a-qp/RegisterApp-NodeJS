@@ -1,74 +1,66 @@
 <html>
-<head>
-</head>
+  <head>
+    <title>Register - Product</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  
+    <link rel="stylesheet" type="text/css" href="/styles/master.css">
+    <link rel="stylesheet" type="text/css" href="/styles/employeeDetail.css">
+  
+    <script type="text/javascript" src="/scripts/master.js" defer></script>
+    <script type="text/javascript" src="/scripts/employeeDetail.js" defer></script>
+  </head>
 <script>
-  /*
-  var options = {
-
-    path: '/upload',
-    method: 'PUT'
-  };
-  */
-  function save(){
-    if(document.getElementById("employeetype") == "new"){
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("demo").innerHTML =
-          this.responseText;
-        }
-      };
-      xhttp.open("POST", "ajax_info.txt", true);
-      xhttp.send();
-    }
-    else {
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("demo").innerHTML =
-          this.responseText;
-        }
-      };
-      xhttp.open("PUT", "ajax_info.txt", true);
-      xhttp.send();
-    }
-  }
-
-  window.addEventListener('DOMContentLoaded', (event) => {
-    console.log('DOM fully loaded and parsed');
-    document.getElementById("save").addEventListener("click", validate);
-
-    function validate(){
-      if((document.getElementById("firstname").length != 0) && (document.getElementById("lastname").length != 0) && (document.getElementById("password").length != 0))
-        save();
-      alert("Invalid Form")
-    }
-  });
-
-
 </script>
 <body>
+  <div id="main" class="main">
+		<div id="error" <% if (!locals.errorMessage || (locals.errorMessage === "")) { %> class="hidden" <% } %>>
+			<h4 id="errorMessage" class="error-message">
+				<% if (locals.errorMessage && (locals.errorMessage !== "")) { %>
+					<%= locals.errorMessage %>
+				<% } %>
+			</h4>
+		</div>
 
-    <form action="/action_page.php">
-        <label for="fname">First name:</label>
-        <input type="hidden" id="employeerecordid">
-        <input type="text" id="employeeid" name="fname" disabled><br><br>
-        <input type="text" id="firstname" name="fname">
-        <input type="text" id="lastname" name="fname">
-        <input type="text" id="password" name="fname">
-        <input type="text" id="confirmpassword" name="fname">
-        <input type="submit" value="Submit">
-      </form>
+		<form>
+      
+      <input type="hidden" id="employeerecordid">
+      <div <% if (!locals.employeeid) { %> class="hidden" <% } %>>
+        <input type="text" id="employeeid" name="eid" disabled><br><br>
+      </div>
+      
+      <label for="fname">First name:</label>
+      <input type="text" id="firstname" name="fname">
+      <label for="lname">Last name:</label>
+      <input type="text" id="lastname" name="lname">
+      <label for="pass">Password:</label>
+      <input type="text" id="password" name="pass">
+      <label for="cpass">Confirm Password:</label>
+      <input type="text" id="confirmpassword" name="cpass">
+      <input type="submit" value="Submit">
+    </form>
 
-      <select id="employeetype" name="cars">
-        <option value="101">Cashier</option>
-        <option value="501">Shift Manager</option>
-        <option value="701">General Manager</option>
-      </select>
+    <select id="employeetype" name="cars">
+      <option value="101">Cashier</option>
+      <option value="501">Shift Manager</option>
+      <option value="701">General Manager</option>
+    </select>
+	</div>
 
-      <button type="button" id="save">Save</button>
-      <!-- will sign out with this. need bradleys sign out code-->
-      <img src="img_girl.jpg" alt="Girl in a jacket" width="500" height="600">
+  <div id="employeeSavedAlertModal" class="modal animate-opacity-show">
+    <div class="modal-content">
+      <div class="container gray-blue">
+        <h1>
+          <span>Employee</span><br />
+          <span>Saved</span>
+        </h1>
+      </div>
+    </div>
+  </div>
+
+      <button type="button" id="saveButton">Save</button>
+  <div class="footer">
+    <img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer"/>
+  </div>
 
 </body>
 </html>
