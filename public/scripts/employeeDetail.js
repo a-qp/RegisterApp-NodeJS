@@ -62,6 +62,7 @@ function saveActionClick(event) {
 function validateSave() {
     const FirstName = getEmployeeFirstName();
     const LastName = getEmployeeLastName();
+    const Password = getEmployeePassword();
 	if ((FirstName == null) || (FirstName.trim() === "")) {
 		displayError("Please provide a valid first name.");
 		return false;
@@ -70,7 +71,7 @@ function validateSave() {
 		displayError("Please provide a valid last name.");
 		return false;
 	}
-	if((Password == null) || (LastName.trim() === "")) {
+	if((Password == null) || (Password.trim() === "")) {
 		displayError("Please provide a valid password.");
 		return false;
 	}
@@ -91,10 +92,10 @@ function getDeleteActionElement() {
 }
 
 function getEmployeeId() {
-	return getEmployeeIdElement().value;
+	return document.getElementById("employeeid").value;
 }
 function setEmployeeId(employeeId) {
-	getEmployeeIdElement().value = employeeId;
+	document.getElementById("employeeId") = employeeId;
 }
 function getEmployeeIdElement() {
 	return document.getElementById("employeeId");

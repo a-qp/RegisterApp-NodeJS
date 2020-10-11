@@ -62,7 +62,7 @@ export const execute = async (
 		managerId: saveEmployeeRequest.managerId,
 		classification: saveEmployeeRequest.classification,
 		password: Buffer.from(
-			EmployeeHelper.hashString(saveEmployeeRequest.password))
+			saveEmployeeRequest.password)
 	};
 
 	return EmployeeModel.create(employeeToCreate)
