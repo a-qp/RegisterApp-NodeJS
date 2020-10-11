@@ -51,7 +51,7 @@
 			</table>
 		</div>
 
-		<div>
+		<div <% if (!locals.isElevatedUser) { %> class="hidden" <% } %>>
 			<br />
 			<div id="deleteActionContainer" <% if (!locals.product || !locals.product.id || (locals.product.id.trim() === "")) { %>class="hidden"<% } %>>
 				<button id="deleteButton" type="button" class="action">Delete</button>
@@ -71,6 +71,10 @@
 				</div>
 			</div>
 		</div>
+	</div>
+
+	<div class="footer">
+		<img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
 	</div>
 
 </body>
