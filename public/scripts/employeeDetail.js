@@ -1,15 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    document.getElementById("save").addEventListener("click", validate);
-
+    document.getElementById("saveButton").addEventListener("click", saveActionClick);
 });
 
-function validate(){
-    if((document.getElementById("firstname").length != 0) && (document.getElementById("lastname").length != 0) && (document.getElementById("password").length != 0)) {
-        save();
-        displayError("Invalid Form");
-    }
-}
 
 function saveActionClick(event) {
 	if (!validateSave()) {
@@ -19,15 +12,23 @@ function saveActionClick(event) {
 	const saveActionElement = event.target;
 	saveActionElement.disabled = true;
 
-	const employeeId = getProductId();
-	const employeeIdIsDefined = ((productId != null) && (employeeId.trim() !== ""));
+	const employeeId = getEmployeeId();
+
+	const employeeLastName = getEmployeeLastName();
+	const employeeFirstName = getEmployeeFirstName();
+	const employeePassword = getEmployeePassword();
+	const employeeClassification = getEmployeeClassification();
+
+	const employeeIdIsDefined = ((employeeId != null) && (employeeId.trim() !== ""));
 	const saveActionUrl = ("/api/employeeDetail/"
 		+ (employeeIdIsDefined ? employeeId : ""));
 	const saveEmployeeRequest = { // change to employee details
 		id: employeeId,
+		// managerId: employeeManagerId,
         lastName: employeeLastName,
         firstName: employeeFirstName,
-        password: employeePassword
+        password: employeePassword,
+        classification: employeeClassification
 	};
 
 	if (employeeIdIsDefined) {
@@ -67,6 +68,10 @@ function validateSave() {
     }
     if ((LastName == null) || (LastName.trim() === "")) {
 		displayError("Please provide a valid last name.");
+		return false;
+	}
+	if((Password == null) || (LastName.trim() === "")) {
+		displayError("Please provide a valid password.");
 		return false;
 	}
 
@@ -111,7 +116,7 @@ function getEmployeeLastName() {
     return getEmployeeLastNameElement().value;
 }
 
-function setEmployeeFirstName(lastName) {
+function setEmployeeLastName(lastName) {
 	getEmployeeFirstNameElement().value = lastName;
 }
 
@@ -119,16 +124,38 @@ function getEmployeeLastNameElement() {
     return document.getElementById("lastname");
 }
 
-function getProductLookupCode() {
-	return getProductLookupCodeElement().value; // prob unnecessary
-}
-function getProductLookupCodeElement() {
-	return document.getElementById("productLookupCode"); // prob unnecessary
+function getEmployeePassword() {
+    return getEmployeePasswordElement().value;
 }
 
-function getProductCount() {
-	return Number(getProductCountElement().value); // prob unnecessary
+function setEmployeePassword(password) {
+	getEmployeePasswordElement().value = password;
 }
-function getProductCountElement() {
-	return document.getElementById("productCount"); // prob unnecessary
+
+function getEmployeePasswordElement() {
+    return document.getElementById("password");
+}
+
+function getEmployeeManagerId() {
+    return getEmployeeManagerIdElement().value;
+}
+
+function setEmployeeManagerId(managerId) {
+	getEmployeeManagerIdElement().value = managerId;
+}
+
+function getEmployeeManagerIdElement() {
+    return document.getElementById("employeerecordid");
+}
+
+function getEmployeeClassification() {
+    return getEmployeeClassificationElement().value;
+}
+
+function setEmployeeClassification(classification) {
+	getEmployeeClassificationElement().value = classification;
+}
+
+function getEmployeeClassificationElement() {
+    return document.getElementById("employeetype");
 }

@@ -36,7 +36,6 @@
       <input type="text" id="password" name="pass">
       <label for="cpass">Confirm Password:</label>
       <input type="text" id="confirmpassword" name="cpass">
-      <input type="submit" value="Submit">
     </form>
 
     <select id="employeetype" name="cars">
@@ -57,7 +56,10 @@
     </div>
   </div>
 
-      <button type="button" id="saveButton">Save</button>
+  <div class="employeeActionsWrapper <% if (locals.errorMessage && (locals.errorMessage !== "")) { %>hidden<% } %>">
+    <br />
+    <button id="saveButton" type="button" class="action">Save</button>
+  </div>
   <div class="footer">
     <img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer"/>
   </div>

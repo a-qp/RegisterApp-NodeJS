@@ -6,6 +6,8 @@ import * as EmployeeRepository from "../models/employeeModel";
 import { Resources, ResourceKey } from "../../../resourceLookup";
 import * as DatabaseConnection from "../models/databaseConnection";
 import { CommandResponse, Employee, EmployeeSaveRequest } from "../../typeDefinitions";
+import { EmployeeClassification } from "../models/constants/entityTypes";
+
 
 const validateSaveRequest = (
 	saveEmployeeRequest: EmployeeSaveRequest
@@ -13,10 +15,25 @@ const validateSaveRequest = (
 
 	let errorMessage: string = "";
 
-	if (Helper.isBlankString(saveEmployeeRequest.firstName) || Helper.isBlankString(saveEmployeeRequest.lastName)) {
-		errorMessage = Resources.getString(ResourceKey.USER_NOT_FOUND); // fix resourcekey - might need individual codes
+	if (Helper.isBlankString(saveEmployeeRequest.firstName)) {
+		errorMessage = Resources.getString(ResourceKey.EMPLOYEE_FIRST_NAME_INVALID);
 	}
+	else if (Helper.isBlankString(saveEmployeeRequest.lastName)) {
+		errorMessage = Resources.getString(ResourceKey.EMPLOYEE_LAST_NAME_INVALID);
+	}
+	else if (Helper.isBlankString(saveEmployeeRequest.password)) {
+		errorMessage = Resources.getString(ResourceKey.EMPLOYEE_PASSWORD_INVALID);
+	}
+	else if ((isNaN(saveEmployeeRequest.classification) && (saveEmployeeRequest.classification != null)
+		|| !(saveEmployeeRequest.classification in EmployeeClassification))) {
 
+		errorMessage = Resources.getString(ResourceKey.EMPLOYEE_TYPE_INVALID);
+	}
+	else if ((saveEmployeeRequest.managerId != null)
+		&& !Helper.isValidUUID(saveEmployeeRequest.managerId)) {
+
+		errorMessage = Resources.getString(ResourceKey.EMPLOYEE_MANAGER_ID_INVALID);
+	}
 	return ((errorMessage === "")
 		? <CommandResponse<Employee>>{ status: 200 }
 		: <CommandResponse<Employee>>{
