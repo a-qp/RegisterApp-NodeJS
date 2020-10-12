@@ -13,7 +13,7 @@ function saveActionClick(event) {
 	saveActionElement.disabled = true;
 
 	const employeeId = getEmployeeId();
-	const employeeManagerId = getEmployeeManagerId();
+	const employeeManagerId = getManagerId();
 	const employeeLastName = getEmployeeLastName();
 	const employeeFirstName = getEmployeeFirstName();
 	const employeePassword = getEmployeePassword();
@@ -98,6 +98,10 @@ function setEmployeeId(employeeId) {
 	document.getElementById("employeeid").value = employeeId;
 }
 
+function getManagerId() {
+	return document.getElementById("employeemanagerId").value;
+}
+
 function getEmployeeFirstName() {
     return getEmployeeFirstNameElement().value;
 }
@@ -132,18 +136,6 @@ function setEmployeePassword(password) {
 
 function getEmployeePasswordElement() {
     return document.getElementById("password");
-}
-
-function getEmployeeManagerId() {
-    return getEmployeeManagerIdElement().value;
-}
-
-function setEmployeeManagerId(managerId) {
-	getEmployeeManagerIdElement().value = managerId;
-}
-
-function getEmployeeManagerIdElement() {
-    return document.getElementById("employeerecordid");
 }
 
 function getEmployeeClassification() {

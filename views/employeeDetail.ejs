@@ -22,12 +22,12 @@
 		</div>
 
 		<form>
-      
-      <input type="hidden" id="employeerecordid">
-      <div <% if (!locals.employeeid) { %> class="hidden" <% } %>>
-        <input type="text" id="employeeid" name="eid" disabled><br><br>
-      </div>
-      
+    <div class="hidden">
+      <label>ID:</label>
+      <input type="text" id="employeeid" name="eid"  value="<% if (locals.employee && locals.employee.id) { %><%= locals.employee.id %><% } %>" /><br><br>
+      <label>Manager Id:</label>
+      <input id="employeemanagerId" type="hidden" value="<% if (locals.employee && locals.employee.managerId) { %><%= locals.employee.managerId %><% } %>" />
+    </div>
       <label for="fname">First name:</label>
       <input type="text" id="firstname" name="fname">
       <label for="lname">Last name:</label>
@@ -45,16 +45,6 @@
     </select>
 	</div>
 
-  <div id="employeeSavedAlertModal" class="modal animate-opacity-show">
-    <div class="modal-content">
-      <div class="container gray-blue">
-        <h1>
-          <span>Employee</span><br />
-          <span>Saved</span>
-        </h1>
-      </div>
-    </div>
-  </div>
 
   <div class="employeeActionsWrapper <% if (locals.errorMessage && (locals.errorMessage !== "")) { %>hidden<% } %>">
     <br />
