@@ -13,7 +13,7 @@ function saveActionClick(event) {
 	saveActionElement.disabled = true;
 
 	const employeeId = getEmployeeId();
-
+	const employeeManagerId = getEmployeeManagerId();
 	const employeeLastName = getEmployeeLastName();
 	const employeeFirstName = getEmployeeFirstName();
 	const employeePassword = getEmployeePassword();
@@ -24,7 +24,7 @@ function saveActionClick(event) {
 		+ (employeeIdIsDefined ? employeeId : ""));
 	const saveEmployeeRequest = { // change to employee details
 		id: employeeId,
-		// managerId: employeeManagerId,
+		managerId: employeeManagerId,
         lastName: employeeLastName,
         firstName: employeeFirstName,
         password: employeePassword,
@@ -50,7 +50,7 @@ function saveActionClick(event) {
 					&& (callbackResponse.data.employee != null)
 					&& (callbackResponse.data.employee.id.trim() !== "")) {
 
-					document.getElementById("deleteActionContainer").classList.remove("hidden");
+					document.getElementById("employeeid").classList.remove("hidden");
 
 					setEmployeeId(callbackResponse.data.employee.id.trim());
 				}
@@ -61,7 +61,8 @@ function saveActionClick(event) {
 
 function validateSave() {
     const FirstName = getEmployeeFirstName();
-    const LastName = getEmployeeLastName();
+	const LastName = getEmployeeLastName();
+	const Password = getEmployeePassword();
 	if ((FirstName == null) || (FirstName.trim() === "")) {
 		displayError("Please provide a valid first name.");
 		return false;
@@ -70,7 +71,7 @@ function validateSave() {
 		displayError("Please provide a valid last name.");
 		return false;
 	}
-	if((Password == null) || (LastName.trim() === "")) {
+	if((Password == null) || (Password.trim() === "")) {
 		displayError("Please provide a valid password.");
 		return false;
 	}
@@ -91,13 +92,10 @@ function getDeleteActionElement() {
 }
 
 function getEmployeeId() {
-	return getEmployeeIdElement().value;
+	return document.getElementById("employeeid").value;
 }
 function setEmployeeId(employeeId) {
-	getEmployeeIdElement().value = employeeId;
-}
-function getEmployeeIdElement() {
-	return document.getElementById("employeeId");
+	document.getElementById("employeeid").value = employeeId;
 }
 
 function getEmployeeFirstName() {

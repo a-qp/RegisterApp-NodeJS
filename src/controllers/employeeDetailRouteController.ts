@@ -129,22 +129,15 @@ export const createEmployee = async (req: Request, res: Response): Promise<void>
 			}
 				return ValidateActiveUser.execute((<Express.Session>req.session).id);
 		}).then((activeUserCommandResponse: CommandResponse<ActiveUser>): void => {
-			if (!EmployeeHelper.isElevatedUser((<ActiveUser>activeUserCommandResponse.data).classification) || (EmployeeExists)) {
-				res.status(activeUserCommandResponse.status)
-				.send(<ApiResponse>{
-					redirectUrl: RouteLookup.MainMenu
-				});
-				return res.redirect(ViewNameLookup.MainMenu);
-			}
-			else if (<CommandResponse<ActiveUser>>{status: 200}) { // fix active user (fixed?)
+            if (<CommandResponse<ActiveUser>>{status: 200}) { // fix active user (fixed?)
 				res.status(activeUserCommandResponse.status)
 				.send(<ApiResponse>{
 					redirectUrl: RouteLookup.SignIn
 				});
 				console.log("fuck3");
-				return res.redirect(ViewNameLookup.SignIn);
 			}
-			saveEmployee(req, res, EmployeeCreateCommand.execute); // does this return?
+            saveEmployee(req, res, EmployeeCreateCommand.execute); // does this return?
+            return res.redirect(ViewNameLookup.SignIn);
 		}).catch((error: any): void => {
 				console.log("fuck4");
 				return res.render(ViewNameLookup.SignIn,
