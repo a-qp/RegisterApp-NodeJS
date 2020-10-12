@@ -45,18 +45,14 @@ export const start = async (req: Request, res: Response): Promise<void> => {
 				ViewNameLookup.ProductDetail,
 				<ProductDetailPageResponse>{
 					product: productsCommandResponse.data,
-					isElevatedUser:
-						EmployeeHelper.isElevatedUser(currentUser.classification)
+					isElevatedUser: EmployeeHelper.isElevatedUser(currentUser.classification)
 				});
 		}).catch((error: any): void => {
 			return processStartProductDetailError(res, error, currentUser);
 		});
 };
 
-const saveProduct = async (
-	req: Request,
-	res: Response,
-	performSave: (productSaveRequest: ProductSaveRequest) => Promise<CommandResponse<Product>>
+const saveProduct = async (req: Request, res: Response, save: (productSaveRequest: ProductSaveRequest) => Promise<CommandResponse<Product>>
 ): Promise<void> => {
 	return ValidateActiveUser.execute((<Express.Session>req.session).id)
 		.then((activeUserCommandResponse: CommandResponse<ActiveUser>): Promise<CommandResponse<Product>> => {
@@ -66,21 +62,16 @@ const saveProduct = async (
 					message: Resources.getString(ResourceKey.USER_NO_PERMISSIONS)
 				});
 			}
-
-			return performSave(req.body);
+			return save(req.body);
 		}).then((createProductCommandResponse: CommandResponse<Product>): void => {
 			res.status(createProductCommandResponse.status)
 				.send(<ProductSaveResponse>{
 					product: <Product>createProductCommandResponse.data
 				});
 		}).catch((error: any): void => {
-			return Helper.processApiError(
-				error,
-				res,
-				<Helper.ApiErrorHints>{
+			return Helper.processApiError(error, res, <Helper.ApiErrorHints>{
 					redirectBaseLocation: RouteLookup.ProductListing,
-					defaultErrorMessage: Resources.getString(
-						ResourceKey.PRODUCT_UNABLE_TO_SAVE)
+					defaultErrorMessage: Resources.getString(ResourceKey.PRODUCT_UNABLE_TO_SAVE)
 				});
 		});
 };
@@ -111,13 +102,9 @@ export const deleteProduct = async (req: Request, res: Response): Promise<void> 
 					redirectUrl: RouteLookup.ProductListing
 				});
 		}).catch((error: any): void => {
-			return Helper.processApiError(
-				error,
-				res,
-				<Helper.ApiErrorHints>{
+			return Helper.processApiError(error, res, <Helper.ApiErrorHints>{
 					redirectBaseLocation: RouteLookup.ProductListing,
-					defaultErrorMessage: Resources.getString(
-						ResourceKey.PRODUCT_UNABLE_TO_DELETE)
+					defaultErrorMessage: Resources.getString(ResourceKey.PRODUCT_UNABLE_TO_DELETE)
 				});
 		});
 };
