@@ -9,7 +9,7 @@ function employeeDetailRoutes(server: express.Express) {
 
     server.get(
 		(RouteLookup.EmployeeDetail + RouteLookup.EmployeeIdParameter),
-		EmployeeDetailRouteController.start);
+		EmployeeDetailRouteController.start2);
 
     server.post(
         (RouteLookup.API + RouteLookup.EmployeeDetail),
