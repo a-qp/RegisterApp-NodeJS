@@ -51,7 +51,7 @@
 			</table>
 		</div>
 
-		<div <% if (!locals.isElevatedUser) { %> class="hidden" <% } %>>
+		<div <% if (!locals.isElevatedUser) { %> hidden <% } %>>
 			<br />
 			<div id="deleteActionContainer" <% if (!locals.product || !locals.product.id || (locals.product.id.trim() === "")) { %>class="hidden"<% } %> >
 				<button id="deleteButton" type="button" class="action">Delete</button>
