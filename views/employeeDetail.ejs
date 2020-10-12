@@ -25,6 +25,8 @@
     <div class="hidden">
       <label>ID:</label>
       <input type="text" id="employeeid" name="eid"  value="<% if (locals.employee && locals.employee.id) { %><%= locals.employee.id %><% } %>" /><br><br>
+    </div>
+    <div class="hidden">
       <label>Manager Id:</label>
       <input id="employeemanagerId" type="hidden" value="<% if (locals.employee && locals.employee.managerId) { %><%= locals.employee.managerId %><% } %>" />
     </div>

@@ -12,7 +12,7 @@ function saveActionClick(event) {
 	const saveActionElement = event.target;
 	saveActionElement.disabled = true;
 
-	const employeeId = getEmployeeId();
+	const employeeId = getEmployeeId().value;
 	const employeeManagerId = getManagerId();
 	const employeeLastName = getEmployeeLastName();
 	const employeeFirstName = getEmployeeFirstName();
@@ -34,29 +34,29 @@ function saveActionClick(event) {
 	if (employeeIdIsDefined) {
 		ajaxPut(saveActionUrl, saveEmployeeRequest, (callbackResponse) => {
 			saveActionElement.disabled = false;
-
-			if (isSuccessResponse(callbackResponse)) {
-				displayEmployeeSavedAlertModel(); // change
+			if ((callbackResponse.data != null) && (callbackResponse.data.employee != null) && (callbackResponse.data.employee.id.trim() !== "")) {
+				window.location.replace(callbackResponse.data.redirectUrl);
 			}
+				
+			if (getEmployeeId.closest("div").classList.contains("hidden")) {
+					setEmployeeId(callbackResponse.data.employee.employeeId);
+					getEmployeeId.closest("div").classList.remove("hidden");
+			}				
+	
 		});
 	} else {
 		ajaxPost(saveActionUrl, saveEmployeeRequest, (callbackResponse) => {
 			saveActionElement.disabled = false;
-
-			if (isSuccessResponse(callbackResponse)) {
-				displayEmployeeSavedAlertModel();
-
-				if ((callbackResponse.data != null)
-					&& (callbackResponse.data.employee != null)
-					&& (callbackResponse.data.employee.id.trim() !== "")) {
-
-					document.getElementById("employeeid").classList.remove("hidden");
-
-					setEmployeeId(callbackResponse.data.employee.id.trim());
+				if ((callbackResponse.data != null) && (callbackResponse.data.employee != null) && (callbackResponse.data.employee.id.trim() !== "")) {
+					window.location.replace(callbackResponse.data.redirectUrl);
 				}
+					
+				if (getEmployeeId.closest("div").classList.contains("hidden")) {
+						setEmployeeId(callbackResponse.data.employee.employeeId);
+						getEmployeeId.closest("div").classList.remove("hidden");
+				}				
 			}
-		});
-	}
+		)};
 };
 
 function validateSave() {
@@ -92,7 +92,7 @@ function getDeleteActionElement() {
 }
 
 function getEmployeeId() {
-	return document.getElementById("employeeid").value;
+	return document.getElementById("employeeid");
 }
 function setEmployeeId(employeeId) {
 	document.getElementById("employeeid").value = employeeId;
